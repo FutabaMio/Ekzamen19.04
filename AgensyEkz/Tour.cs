@@ -6,8 +6,8 @@ namespace AgensyEkz
 {
     public class Tour
     {
-        string travelDirection;
-        double time; //формат ЧЧ.ММ
-        double price;
+        public string travelDirection;
+        public double time; //формат ЧЧ.ММ
+        public double price;
     }
 }

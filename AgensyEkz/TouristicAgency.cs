@@ -8,7 +8,7 @@ namespace AgensyEkz
     {
         //поля
         string name;
-        Tour[] tours;
+        public Tour[] tours;
 
         //конструктор
         public TouristicAgency(int x)
@@ -17,9 +17,16 @@ namespace AgensyEkz
         }
 
         //функция сортировки
-        public void Sort()
+        public void Sort(Tour[] tours)
         {
-            
+            Tour buf;
+            for(int i=0; i < tours.Length; i++)
+            {
+                for(int j=i+1; j<tours.Length-1; j++)
+                {
+                    buf.
+                }
+            }
         }
     }
 }
