@@ -22,12 +22,27 @@ namespace AgensyEkz
         {
             for(int i=0; i<tours.Length; i++)
             {
+                try
+                {
                 Console.WriteLine("Направление поездки:");
                 tours[i].travelDirection = Console.ReadLine();
                 Console.WriteLine("Продолжительность поездки (пожалуйста придерживайтесь формата ЧЧ.ММ):");
                 tours[i].time = double.Parse(Console.ReadLine());
                 Console.WriteLine("Цена поездки:");
                 tours[i].price = double.Parse(Console.ReadLine());
+                }
+                catch (FormatException exc){
+                    Console.WriteLine("Обнаружено несоответствие форматов, проверьте введённые данные.");
+                }
+                catch(ArgumentNullException exc)
+                {
+                    Console.WriteLine("Похоже, вы ничего не ввели, попрбуйте ещё раз.");
+                }
+                catch(OverflowException exc)
+                {
+                    Console.WriteLine("Похоже, вы ввели слишком большое числ, попробуйте ещё раз.");
+                }
+                
             }
         }
 
