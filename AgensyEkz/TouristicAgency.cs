@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace AgensyEkz
@@ -71,9 +72,26 @@ namespace AgensyEkz
         }
 
         //функция записи в файл
-        public void WriteToFile()
+        public void WriteToFile(Tour[] tours)
         {
-
+            try
+            {
+                FileStream fs = new FileStream("Sorted Tours.txt", FileMode.OpenOrCreate);
+                StreamWriter sr = new StreamWriter(fs);
+                    for (int i = 0; i < tours.Length; i++)
+                    {
+                        string corrected = $"Направление: {tours[i].travelDirection}, длительность: {tours[i].time}, цена: {tours[i].price} \n";
+                        sr.Write(corrected);
+                    }
+            }
+            catch(IOException exc)
+            {
+                Console.WriteLine("Похоже, что-то пошло не так. Попробуйте ещё раз.");
+            }
+            catch(ObjectDisposedException exc)
+            {
+                Console.WriteLine("Похоже, что-то пошло не так. Попробуйте ещё раз.");
+            }
         }
     }
 }
