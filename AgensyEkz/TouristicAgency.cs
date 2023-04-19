@@ -9,13 +9,30 @@ namespace AgensyEkz
     {
         //поля
         string name;
-        public Tour[] tours;
+         //int x;
+        //Tour[] tours1;
 
         //конструктор
-        public TouristicAgency(string s, int x)
+        public TouristicAgency(string s, int size)
         {
             name = s;
-            tours = new Tour[x];
+            Tour[] tours = new Tour[size];
+            for (int i = 0; i < tours.Length; i++)
+            {
+                Console.WriteLine("Направление поездки:");
+                tours[i].travelDirection = Console.ReadLine();
+                Console.WriteLine("Продолжительность поездки:");
+                int.TryParse(Console.ReadLine(), out int time);
+                tours[i].time = time;
+                Console.WriteLine("Цена поездки:");
+                int.TryParse(Console.ReadLine(), out int price);
+                tours[i].price = price;
+
+
+            }
+            Filling(tours);
+            Sort(tours);
+            WriteToFile(tours);
         }
 
         //функция заполнения массива
@@ -23,27 +40,16 @@ namespace AgensyEkz
         {
             for(int i=0; i<tours.Length; i++)
             {
-                try
-                {
                 Console.WriteLine("Направление поездки:");
                 tours[i].travelDirection = Console.ReadLine();
-                Console.WriteLine("Продолжительность поездки (пожалуйста придерживайтесь формата ЧЧ.ММ):");
-                tours[i].time = double.Parse(Console.ReadLine());
+                Console.WriteLine("Продолжительность поездки:");
+                int.TryParse(Console.ReadLine(), out int time);
+                tours[i].time = time;
                 Console.WriteLine("Цена поездки:");
-                tours[i].price = double.Parse(Console.ReadLine());
-                }
-                catch (FormatException exc){
-                    Console.WriteLine("Обнаружено несоответствие форматов, проверьте введённые данные.");
-                }
-                catch(ArgumentNullException exc)
-                {
-                    Console.WriteLine("Похоже, вы ничего не ввели, попрбуйте ещё раз.");
-                }
-                catch(OverflowException exc)
-                {
-                    Console.WriteLine("Похоже, вы ввели слишком большое числ, попробуйте ещё раз.");
-                }
-                
+                int.TryParse(Console.ReadLine(), out int price);
+                tours[i].price = price;
+
+
             }
         }
 
